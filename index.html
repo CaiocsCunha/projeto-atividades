@@ -5,39 +5,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Atividades</title>
     <link rel="stylesheet" href="./styles/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <div id="inputContainer">
-      <div class="divDefault">
-        <label id="label1" for="inputDescricao">Descrição</label>
-        <textarea
-          id="inputDescricao"
-          type="text"
-          title="Descrição"
-          onkeyup="salvarDescricao(this.value)"
-        ></textarea>
-      </div>
-      <div class="divDefault">
-        <label for="inputData">Data</label>
-        <input
-          id="inputData"
-          type="datetime-local"
-          onchange="salvarDataHora(this.value)"
-        />
-      </div>
-      <div class="">
-        <button id="botaoCriarAtividade" onclick="criarAtividade()">
-          Criar Atividade
-        </button>
-      </div>
-      <div class="">
-        <button id="botaoExcluirTudo" onclick="excluirTudo()">
-          Excluir Tudo
-        </button>
+    <main>
+      <form id="inputContainer">
+        <div class="divDefault">
+          <label id="label1" for="inputDescricao">Descrição</label>
+          <textarea
+            id="inputDescricao"
+            type="text"
+            title="Descrição"
+            onkeyup="salvarDescricao(this.value)"
+          ></textarea>
+        </div>
+        <div class="divDefault">
+          <label for="inputData">Data</label>
+          <input id="inputData" type="datetime-local" />
+        </div>
+        <div class="buttons">
+          <button id="botaoCriarAtividade" onclick="Form.submit(event)">
+            Criar Atividade
+          </button>
+        </div>
+        <div class="buttons">
+          <button id="botaoExcluirTudo" onclick="Modal.open(event)">
+            Excluir Tudo
+          </button>
+        </div>
+      </form>
+      <div id="atividadesContainer"></div>
+    </main>
+
+    <div class="modal-overlay">
+      <div class="modal">
+        <p>Tem certeza que deseja apagar todas as atividades?</p>
+
+        <div class="button-group">
+          <button onclick="Storage.clearAll(event)">Confirmar</button>
+          <button onclick="Modal.close(event)">Cancelar</button>
+        </div>
       </div>
     </div>
-
-    <div id="atividadesContainer"></div>
 
     <script src="./js/scripts.js"></script>
   </body>
