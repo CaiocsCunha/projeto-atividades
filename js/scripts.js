@@ -32,7 +32,6 @@ const Atividade = {
 
   add(atividade) {
     Atividade.allAtivities.push(atividade)
-    App.reload()
   },
   remove(index) {
     Atividade.allAtivities.splice(index, 1)
@@ -54,7 +53,7 @@ const DOM = {
     atividadesContainer.appendChild(divAtividade)
   },
   innerHTMLAtividade(atividade, index) {
-    const dataHora = Utils.formatDate(atividade.dataHora)
+    const dataHora = atividade.dataHora
     const descricao = atividade.descricao
 
     const html = `
@@ -123,6 +122,7 @@ const Form = {
       const atividade = Form.formatValues()
       Atividade.add(atividade)
       Form.clearFields()
+      App.reload()
     } catch (error) {
       alert(error.message)
     }
